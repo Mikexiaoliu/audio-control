@@ -1,0 +1,50 @@
+{
+  "name": "audio-control",
+  "version": "0.1.0",
+  "description": "A desktop audio playback console with playlist groups, output device selection, and playback speed control.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/renderer.js",
+    "dist": "electron-builder --win nsis --x64"
+  },
+  "keywords": [
+    "audio",
+    "player",
+    "electron"
+  ],
+  "author": "Mikexiaoliu",
+  "license": "MIT",
+  "build": {
+    "appId": "com.mikexiaoliu.audio-control",
+    "productName": "Audio Control",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Audio Control"
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.12"
+  }
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Control</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="sidebar" aria-label="音效分组">
+        <div class="brand">
+          <div class="brand-mark">AC</div>
+          <div>
+            <h1>Audio Control</h1>
+            <p>会议音频执行台</p>
+          </div>
+        </div>
+
+        <div class="mode-panel">
+          <label><input id="executionModeToggle" type="checkbox"> 执行模式</label>
+          <label><input id="compactModeToggle" type="checkbox"> 紧凑模式</label>
+          <label><input id="autoNextToggle" type="checkbox"> 自动下一首</label>
+          <p id="autoNextHint">按当前筛选列表顺序播放，可用上移/下移调整顺序。</p>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-title">分组</div>
+          <div class="group-list" id="groupList"></div>
+        </div>
+
+        <div class="sidebar-section edit-only">
+          <label for="newGroupInput" class="section-title">新分组</label>
+          <div class="inline-form">
+            <input id="newGroupInput" type="text" placeholder="例如：暖场">
+            <button id="addGroupButton" type="button">添加</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <header class="toolbar">
+          <div>
+            <h2>播放列表</h2>
+            <p id="statusText">准备就绪</p>
+          </div>
+          <div class="toolbar-actions edit-only">
+            <button id="addFilesButton" type="button">添加音频</button>
+            <button id="addFolderButton" type="button">添加文件夹</button>
+          </div>
+        </header>
+
+        <section class="controls" aria-label="播放设置">
+          <label class="field">
+            <span>主输出设备</span>
+            <select id="deviceSelect"></select>
+          </label>
+          <label class="field">
+            <span>监听设备</span>
+            <select id="monitorDeviceSelect"></select>
+          </label>
+          <button id="refreshDevicesButton" type="button" class="secondary-button">刷新设备</button>
+        </section>
+
+        <section class="now-playing" aria-label="当前播放">
+          <div>
+            <div class="label">当前播放</div>
+            <div id="currentTitle" class="current-title">未选择音频</div>
+          </div>
+          <div class="transport">
+            <button id="pauseButton" type="button">全部暂停</button>
+            <button id="stopButton" type="button">全部停止</button>
+          </div>
+        </section>
+
+        <section class="playlist" aria-label="播放列表">
+          <div class="playlist-head">
+            <span>播放 / 名称</span>
+            <span class="edit-only">分组</span>
+            <span>电平</span>
+            <span>音量</span>
+            <span>速率</span>
+            <span>进度</span>
+            <span>状态</span>
+            <span>操作 / 顺序</span>
+          </div>
+          <div id="playlistItems" class="playlist-items"></div>
+          <div id="emptyState" class="empty-state">
+            <strong>还没有音频</strong>
+            <span>点击“添加音频”或“添加文件夹”开始建立你的播放控制台。</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
